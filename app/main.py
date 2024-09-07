@@ -3,6 +3,13 @@ from models.citas import Cita
 from models.reportes import ReporteFactory
 
 class Consultorio:
+    _instancia = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instancia is None:
+            cls._instancia = super(Consultorio, cls).__new__(cls, *args, **kwargs)
+        return cls._instancia
+
     def sistemaConsultorio(self):
         while True:
             print("\n======= Consultorio CitaYA =======\n¡Bienvenido al lugar donde la salud es lo primero!\n")
