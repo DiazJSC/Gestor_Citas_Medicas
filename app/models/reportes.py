@@ -8,13 +8,13 @@ class Reportes(ABC):
 class Demanda(Reportes):
     def generar(self):
         fecha_actual = datetime.now()
-        print(f"Fecha descarga: {fecha_actual.strftime("%Y-%m-%d")}\nTipo reporte: Médicos con mayor demanda
+        print(f"Fecha descarga: {fecha_actual}\nTipo reporte: Médicos con mayor demanda
               \nExportando reporte en formato excel...")
 
 class Tendencia(Reportes):
     def generar(self):
         fecha_actual = datetime.now()
-        print(f"Fecha descarga: {fecha_actual.strftime("%Y-%m-%d")}\nTipo reporte: Tendencia de citas
+        print(f"Fecha descarga: {fecha_actual}\nTipo reporte: Tendencia de citas
               \nExportando reporte en formato excel...")
 
 class ReporteFactory:
