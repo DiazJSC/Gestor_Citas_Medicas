@@ -1,4 +1,5 @@
-#from models.pacientes import Paciente
+from models.pacientes import Paciente
+from models.citas import Cita
 from models.reportes import ReporteFactory
 
 class Consultorio:
@@ -12,7 +13,7 @@ class Consultorio:
             opcion = input("Indique la opción a realizar: ")
 
             if opcion == "1":
-                break
+                self.ObtenerPacientes()
             elif opcion == "2":
                 self.obtenerReportes()
             elif opcion == "3":
@@ -29,6 +30,10 @@ class Consultorio:
                 reporte.generar()
             else:
                 break
+
+    def ObtenerPacientes(self):
+        paciente = Paciente.registro_paciente()
+        paciente.menuPaciente()
 
 # Inicializar sistema
 consultorio = Consultorio()

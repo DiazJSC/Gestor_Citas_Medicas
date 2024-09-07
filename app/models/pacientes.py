@@ -1,5 +1,5 @@
 from datetime import datetime
-from citas import Cita
+from .citas import Cita
 
 class Paciente:
     # Función para configurar los atributos después de la creación de la instancia
@@ -69,10 +69,10 @@ class Paciente:
                 print("¡La opción no se encuentra disponible, intente nuevamente!")
 
     def agendar_cita(self):
+        duracion = 20
         fecha = input("Ingrese la fecha de la cita (YYYY-MM-DD): ")
         hora = input("Ingrese la hora de la cita (HH:MM): ")
-        doctor = input("Ingrese el nombre del doctor: ")
-        self.agendarCita(fecha, hora, doctor)
+        self.agendarCita(fecha, hora, duracion)
 
     def cancelar_cita(self):
         if self.citas:
@@ -86,7 +86,3 @@ class Paciente:
                 print("¡El número de cita no es correcto!")
         else:
             print("¡No hay citas agendadas para cancelar!")
-
-# Inicialización de las clases
-paciente = Paciente.registro_paciente()
-paciente.menuPaciente()
