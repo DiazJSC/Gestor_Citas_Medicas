@@ -2,20 +2,19 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 
 class Reportes(ABC):
+    @abstractmethod
     def generar(self):
         pass
 
 class Demanda(Reportes):
     def generar(self):
         fecha_actual = datetime.now()
-        print(f"Fecha descarga: {fecha_actual}\nTipo reporte: Médicos con mayor demanda
-              \nExportando reporte en formato excel...")
+        print(f"Fecha descarga: {fecha_actual}\nTipo reporte: Médicos con mayor demanda\nExportando reporte en formato excel...")
 
 class Tendencia(Reportes):
     def generar(self):
         fecha_actual = datetime.now()
-        print(f"Fecha descarga: {fecha_actual}\nTipo reporte: Tendencia de citas
-              \nExportando reporte en formato excel...")
+        print(f"Fecha descarga: {fecha_actual}\nTipo reporte: Tendencia de citas\nExportando reporte en formato excel...")
 
 class ReporteFactory:
     def crear_reporte(self, tipo_reporte):
