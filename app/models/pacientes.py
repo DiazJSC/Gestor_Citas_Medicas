@@ -2,7 +2,6 @@ from .citas import Cita
 from .medicos import Medico
 
 class Paciente:
-    # Función para configurar los atributos después de la creación de la instancia
     def __init__(self, nombre, identificacion, correo, telefono, fechaNacimiento):
         self.nombre = nombre
         self.identificacion = identificacion
@@ -11,30 +10,32 @@ class Paciente:
         self.fechaNacimiento = fechaNacimiento
         self.citas = []
 
-    # Función para agendar la cita establecida por el paciente
-    def agendarCita(self, fecha, hora, duracion):
+    def agendarCita(self, medico, horario):
+        fecha = horario['fecha']
+        hora = horario['hora_inicio']
+        duracion = 20  # Duración fija para la cita
+
         nueva_cita = Cita(fecha, hora, duracion)
         self.citas.append(nueva_cita)
-        print(f"Cita agendada: {nueva_cita}")
 
-    # Función para cancelar la(s) cita(s) establecida(s) por el paciente
+        # Marcar el horario como "no disponible"
+        horario['disponible'] = False
+        print(f"Cita agendada con el Dr. {medico.nombre}, Fecha: {fecha}, Hora: {hora}")
+
     def cancelarCita(self, cita):
         if cita in self.citas:
             self.citas.remove(cita)
             print(f"Cita cancelada: {cita}")
         else:
-            print("¡La cita no esta registrada!")
+            print("¡La cita no está registrada!")
 
-    # Función para generar recordatorio de la cita programada por el paciente
     def recibirRecordatorio(self):
         if not self.citas:
             print("¡No hay citas agendadas!")
         for cita in self.citas:
             print(f"Recordatorio: {cita}")
 
-    # Método para crear un paciente sin tener que instanciar primero la clase
     @staticmethod
-    # Función para obtener los datos del paciente que registra la cita
     def registro_paciente():
         print("\n====== Registro de paciente ======")
         nombre = input("Ingrese nombre completo: ")
@@ -45,16 +46,15 @@ class Paciente:
 
         return Paciente(nombre, identificacion, correo, telefono, fechaNacimiento)
 
-    # Función donde se construye el menú interactivo para la clase 'Pacientes'
     def menuPaciente(self):
         while True:
             print("\nMenú Paciente - ¿Qué deseas realizar hoy?")
             print("1. Agendar una cita")
             print("2. Cancelar una cita")
             print("3. Recibir recordatorio de citas")
-            print("4. Horarios de médicos")
+            print("4. Ver horarios de médicos")
             print("5. Salir")
-            
+
             opcion = input("Indique la opción a realizar: ")
 
             if opcion == "1":
@@ -64,18 +64,12 @@ class Paciente:
             elif opcion == "3":
                 self.recibirRecordatorio()
             elif opcion == "4":
-                self.obtenerMedico()
+                self.verHorariosMedico()
             elif opcion == "5":
                 print("Saliendo del menú...")
                 break
             else:
                 print("¡La opción no se encuentra disponible, intente nuevamente!")
-
-    def agendar_cita(self):
-        duracion = 20
-        fecha = input("Ingrese la fecha de la cita (YYYY-MM-DD): ")
-        hora = input("Ingrese la hora de la cita (HH:MM): ")
-        self.agendarCita(fecha, hora, duracion)
 
     def cancelar_cita(self):
         if self.citas:
@@ -91,4 +85,52 @@ class Paciente:
             print("¡No hay citas agendadas para cancelar!")
 
     def obtenerMedico(self):
-        Medico.iniciar_sistema_medico()
+        # Obtener la lista de médicos disponibles
+        medicos = list(Medico.lis_medicos.keys())
+
+        # Mostrar los médicos disponibles
+        print("\nMédicos disponibles:")
+        for idx, nombre in enumerate(medicos):
+            print(f"{idx + 1}. {nombre} ({Medico.lis_medicos[nombre]})")
+
+        # Seleccionar un médico
+        numero_medico = int(input("Seleccione un médico por su número: ")) - 1
+        if 0 <= numero_medico < len(medicos):
+            nombre_medico = medicos[numero_medico]
+            especialidad = Medico.lis_medicos[nombre_medico]
+
+            # Crear una instancia del médico seleccionado
+            medico = Medico(nombre_medico, especialidad)
+            return medico
+        else:
+            print("¡Selección inválida!")
+            return None
+
+    def agendar_cita(self):
+        medico = self.obtenerMedico()
+        if medico:
+            medico.visualizarHorariosMedico()
+            self.seleccionarHorario(medico)
+
+    def verHorariosMedico(self):
+        medico = self.obtenerMedico()
+        if medico:
+            print(f"Horarios disponibles para el Dr. {medico.nombre}:")
+            medico.visualizarHorariosMedico()
+
+    def seleccionarHorario(self, medico):
+        horarios_disponibles = [h for h in medico.horarios.horarios if h['disponible']]
+
+        if horarios_disponibles:
+            print("\nHorarios disponibles:")
+            for idx, horario in enumerate(horarios_disponibles):
+                print(f"{idx + 1}. Fecha: {horario['fecha']}, Hora: {horario['hora_inicio']}")
+
+            numero_horario = int(input("Seleccione un horario por su número: ")) - 1
+            if 0 <= numero_horario < len(horarios_disponibles):
+                horario_seleccionado = horarios_disponibles[numero_horario]
+                self.agendarCita(medico, horario_seleccionado)
+            else:
+                print("¡Selección inválida!")
+        else:
+            print("¡No hay horarios disponibles!")
