@@ -1,3 +1,5 @@
+#Autor Juan Sebastian Diaz Campos - Cód. Estudiantil: 2116642
+
 class Cita:
     def __init__(self, fecha, hora, duracion):
         self.fecha = fecha

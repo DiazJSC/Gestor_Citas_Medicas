@@ -1,6 +1,9 @@
+#Autor Juan Sebastian Diaz Campos - Cód. Estudiantil: 2116642
+
 from .horarios import Horarios
 
 class Medico:
+    # Se establece un diccionario con los datos de los médicos predeterminados
     lis_medicos = {
         "Pablo Arias": "Cardiología",
         "Ricardo Molano": "Pediatría",
@@ -13,7 +16,7 @@ class Medico:
         self.horarios = Horarios()  # Instancia de la clase Horarios para gestionar los horarios del médico
 
     def registrarMedico(self):
-        print(f"Se registró al Médico: {self.nombre}, con la Especialidad: {self.especialidad}")
+        print(f"Se establecio al Médico: {self.nombre}, con la Especialidad: {self.especialidad}")
 
     def marcarDisponibilidadMedico(self):
         print(f"\nMarcando disponibilidad para el Dr. {self.nombre}")
@@ -23,6 +26,7 @@ class Medico:
         print(f"\nVisualizando horarios del Dr. {self.nombre}")
         self.horarios.visualizarHorarios()
 
+    # Función para interactuar con el menú de cada doctor
     def menuMedico(self):
         while True:
             print(f"\nMenú del Dr. {self.nombre} - Especialidad: {self.especialidad}")
@@ -44,22 +48,17 @@ class Medico:
 
     @classmethod
     def iniciar_sistema_medico(cls):
-        # Mostrar lista de médicos predeterminados
         print("\nLista de médicos disponibles:")
         for idx, (nombre, especialidad) in enumerate(cls.lis_medicos.items()):
             print(f"{idx + 1}. {nombre} - Especialidad: {especialidad}")
         
-        # Seleccionar médico de la lista
         seleccion = int(input("Seleccione el médico (ingrese el número): ")) - 1
         if 0 <= seleccion < len(cls.lis_medicos):
             nombre_medico = list(cls.lis_medicos.keys())[seleccion]
             especialidad_medico = cls.lis_medicos[nombre_medico]
             
-            # Crear una instancia del médico seleccionado
             medico = cls(nombre_medico, especialidad_medico)
             medico.registrarMedico()
-
-            # Iniciar el menú para el médico seleccionado
             medico.menuMedico()
         else:
             print("¡Selección inválida!")

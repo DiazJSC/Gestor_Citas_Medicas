@@ -1,3 +1,5 @@
+#Autor Juan Sebastian Diaz Campos - Cód. Estudiantil: 2116642
+
 from .citas import Cita
 from .medicos import Medico
 
@@ -10,10 +12,11 @@ class Paciente:
         self.fechaNacimiento = fechaNacimiento
         self.citas = []
 
+
     def agendarCita(self, medico, horario):
         fecha = horario['fecha']
         hora = horario['hora_inicio']
-        duracion = 20  # Duración fija para la cita
+        duracion = 20  # Se establece una duración predeterminada de 20 minutos para las citas
 
         nueva_cita = Cita(fecha, hora, duracion)
         self.citas.append(nueva_cita)
@@ -46,9 +49,10 @@ class Paciente:
 
         return Paciente(nombre, identificacion, correo, telefono, fechaNacimiento)
 
+    # Función para estructurar la interación con el menú de gestión de citas
     def menuPaciente(self):
         while True:
-            print("\nMenú Paciente - ¿Qué deseas realizar hoy?")
+            print("\nMenú Citas - ¿Qué deseas realizar hoy?")
             print("1. Agendar una cita")
             print("2. Cancelar una cita")
             print("3. Recibir recordatorio de citas")
@@ -85,21 +89,17 @@ class Paciente:
             print("¡No hay citas agendadas para cancelar!")
 
     def obtenerMedico(self):
-        # Obtener la lista de médicos disponibles
         medicos = list(Medico.lis_medicos.keys())
 
-        # Mostrar los médicos disponibles
         print("\nMédicos disponibles:")
         for idx, nombre in enumerate(medicos):
             print(f"{idx + 1}. {nombre} ({Medico.lis_medicos[nombre]})")
 
-        # Seleccionar un médico
         numero_medico = int(input("Seleccione un médico por su número: ")) - 1
         if 0 <= numero_medico < len(medicos):
             nombre_medico = medicos[numero_medico]
             especialidad = Medico.lis_medicos[nombre_medico]
 
-            # Crear una instancia del médico seleccionado
             medico = Medico(nombre_medico, especialidad)
             return medico
         else:
