@@ -1,5 +1,4 @@
 from models.pacientes import Paciente
-from models.citas import Cita
 from models.reportes import ReporteFactory
 
 class Consultorio:
