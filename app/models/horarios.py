@@ -1,11 +1,12 @@
+#Autor Juan Sebastian Diaz Campos - Cód. Estudiantil: 2116642
+
 class Horarios:
     def __init__(self):
-        # Inicializar los horarios predefinidos
         self.horarios = []  
         self.cargarHorariosPredefinidos()
 
+    # Función para establecer horarios predeterminados para ser tomados por el paciente
     def cargarHorariosPredefinidos(self):
-        # Horarios predefinidos para mañana y tarde
         dias = [
             {'fecha': '2024-09-09', 'hora_inicio': '08:00', 'hora_fin': '08:20', 'disponible': True},
             {'fecha': '2024-09-09', 'hora_inicio': '09:20', 'hora_fin': '09:40', 'disponible': True},
@@ -30,7 +31,7 @@ class Horarios:
             {'fecha': '2024-09-11', 'hora_inicio': '16:40', 'hora_fin': '17:00', 'disponible': True},
         ]
 
-        # Agregar todos los horarios de mañana y tarde a la lista
+        # De esta manera se agregan todos los horarios de mañana y tarde a la lista
         self.horarios.extend(dias + tardes)
 
     def marcarDisponibilidad(self):
@@ -48,7 +49,7 @@ class Horarios:
             self.horarios[numero_horario]['disponible'] = False
             print("¡La fecha ha sido marcado como No Disponible!")
         else:
-            print("¡El número de horario no existe!")
+            print("¡El número de horario no es correcto!")
 
     def visualizarHorarios(self):
         if not self.horarios:
