@@ -1,5 +1,5 @@
-from datetime import datetime
 from .citas import Cita
+from .medicos import Medico
 
 class Paciente:
     # Función para configurar los atributos después de la creación de la instancia
@@ -12,8 +12,8 @@ class Paciente:
         self.citas = []
 
     # Función para agendar la cita establecida por el paciente
-    def agendarCita(self, fecha, hora, doctor):
-        nueva_cita = Cita(fecha, hora, doctor)
+    def agendarCita(self, fecha, hora, duracion):
+        nueva_cita = Cita(fecha, hora, duracion)
         self.citas.append(nueva_cita)
         print(f"Cita agendada: {nueva_cita}")
 
@@ -36,7 +36,7 @@ class Paciente:
     @staticmethod
     # Función para obtener los datos del paciente que registra la cita
     def registro_paciente():
-        print("====== Registro de paciente ======")
+        print("\n====== Registro de paciente ======")
         nombre = input("Ingrese nombre completo: ")
         identificacion = input("Ingrese número de identificación: ")
         correo = input("Ingrese correo electrónico: ")
@@ -52,7 +52,8 @@ class Paciente:
             print("1. Agendar una cita")
             print("2. Cancelar una cita")
             print("3. Recibir recordatorio de citas")
-            print("4. Salir")
+            print("4. Horarios de médicos")
+            print("5. Salir")
             
             opcion = input("Indique la opción a realizar: ")
 
@@ -63,6 +64,8 @@ class Paciente:
             elif opcion == "3":
                 self.recibirRecordatorio()
             elif opcion == "4":
+                self.obtenerMedico()
+            elif opcion == "5":
                 print("Saliendo del menú...")
                 break
             else:
@@ -86,3 +89,6 @@ class Paciente:
                 print("¡El número de cita no es correcto!")
         else:
             print("¡No hay citas agendadas para cancelar!")
+
+    def obtenerMedico(self):
+        Medico.iniciar_sistema_medico()
