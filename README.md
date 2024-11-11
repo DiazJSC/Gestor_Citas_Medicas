@@ -16,18 +16,18 @@ El proyecto se ha realizado como entrega final de la asignatura **Programación 
 
 ## Instalación
 ### Clonar repositorio:
->git clone https://github.com/DiazJSC/Gestor_Citas_Medicas
->cd Gestor_Citas_Medicas
+- git clone https://github.com/DiazJSC/Gestor_Citas_Medicas
+- cd Gestor_Citas_Medicas
 ### Instalar depedencias:
->pip install -r requirement.txt
+- pip install -r requirement.txt
 
 ## Uso
 ### Inicio de aplicación:
->cd webapp
->python main.py
+- cd webapp
+- python main.py
 
 ### Inicio página web:
-> En construcción ---> Agregar URL
+- En construcción ---> Agregar URL
 
 ## Autores
 - Líder proyecto: Juan Sebastian Diaz
