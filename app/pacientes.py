@@ -1,7 +1,5 @@
-#Autor Juan Sebastian Diaz Campos - Cód. Estudiantil: 2116642
-
-from .citas import Cita
-from .medicos import Medico
+from app.citas import Cita
+from app.medicos import Medico
 
 class Paciente:
     def __init__(self, nombre, identificacion, correo, telefono, fechaNacimiento):
@@ -12,11 +10,10 @@ class Paciente:
         self.fechaNacimiento = fechaNacimiento
         self.citas = []
 
-
     def agendarCita(self, medico, horario):
         fecha = horario['fecha']
         hora = horario['hora_inicio']
-        duracion = 20  # Se establece una duración predeterminada de 20 minutos para las citas
+        duracion = 20  # Duración predeterminada de 20 minutos para las citas
 
         nueva_cita = Cita(fecha, hora, duracion)
         self.citas.append(nueva_cita)
@@ -49,32 +46,6 @@ class Paciente:
 
         return Paciente(nombre, identificacion, correo, telefono, fechaNacimiento)
 
-    # Función para estructurar la interación con el menú de gestión de citas
-    def menuPaciente(self):
-        while True:
-            print("\nMenú Citas - ¿Qué deseas realizar hoy?")
-            print("1. Agendar una cita")
-            print("2. Cancelar una cita")
-            print("3. Recibir recordatorio de citas")
-            print("4. Ver horarios de médicos")
-            print("5. Salir")
-
-            opcion = input("Indique la opción a realizar: ")
-
-            if opcion == "1":
-                self.agendar_cita()
-            elif opcion == "2":
-                self.cancelar_cita()
-            elif opcion == "3":
-                self.recibirRecordatorio()
-            elif opcion == "4":
-                self.verHorariosMedico()
-            elif opcion == "5":
-                print("Saliendo del menú...")
-                break
-            else:
-                print("¡La opción no se encuentra disponible, intente nuevamente!")
-
     def cancelar_cita(self):
         if self.citas:
             print("Citas agendadas:")
@@ -105,18 +76,6 @@ class Paciente:
         else:
             print("¡Selección inválida!")
             return None
-
-    def agendar_cita(self):
-        medico = self.obtenerMedico()
-        if medico:
-            medico.visualizarHorariosMedico()
-            self.seleccionarHorario(medico)
-
-    def verHorariosMedico(self):
-        medico = self.obtenerMedico()
-        if medico:
-            print(f"Horarios disponibles para el Dr. {medico.nombre}:")
-            medico.visualizarHorariosMedico()
 
     def seleccionarHorario(self, medico):
         horarios_disponibles = [h for h in medico.horarios.horarios if h['disponible']]
