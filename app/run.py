@@ -19,7 +19,6 @@ def citas():
     return render_template('citas.html')
 
 # Ruta para la generación de reportes
-# Ruta para la generación de reportes
 @app.route('/reportes', methods=["GET", "POST"])
 def reportes():
     if request.method == "POST":
@@ -31,4 +30,4 @@ def reportes():
 
 # Punto de entrada de la aplicación
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
