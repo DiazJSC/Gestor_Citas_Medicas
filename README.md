@@ -23,7 +23,6 @@ El proyecto se ha realizado como entrega final de la asignatura **Programación 
 
 ## Uso
 ### Inicio de aplicación:
-- cd webapp
 - python main.py
 
 ### Inicio página web:
