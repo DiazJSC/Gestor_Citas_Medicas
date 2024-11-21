@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generar Reportes</title>
+</head>
+<body>
+    <h1>Generar Reportes</h1>
+    <form action="/reportes" method="POST">
+        <label for="tipo_reporte">Seleccionar tipo de reporte:</label>
+        <select name="tipo_reporte" id="tipo_reporte" required>
+            <option value="demanda">Médicos con mayor demanda</option>
+            <option value="tendencia">Tendencia de citas</option>
+        </select>
+        <button type="submit">Generar Reporte</button>
+    </form>
+
+    <a href="/">Volver al inicio</a>
+</body>
+</html>

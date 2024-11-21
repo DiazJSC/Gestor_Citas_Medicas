@@ -1,7 +1,7 @@
 # Autor Juan Sebastian Diaz Campos - Cód. Estudiantil: 2116642
 
-from models.pacientes import Paciente
-from models.reportes import ReporteFactory
+from app.pacientes import Paciente
+from app.reportes import ReporteFactory
 
 class Consultorio:
     _instancia = None
