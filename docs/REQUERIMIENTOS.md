@@ -3,26 +3,27 @@
 Estos son los requerimientos que fueron suministrados por el encargo del sistema por parte del consultoria de citas médicas
 
 ## Requerimientos: 
-- R1: El sistema debe permitir registrar a los pacientes.
-- R2: El sistema debe permitir que los pacientes registrados puedan agendar ellos mismos sus citas.
-- R3: El sistema debe permitir al paciente consultar la disponibilidad de los médicos en tiempo real (horarios ocupados, disponibles, citas agendadas y canceladas)
-- R4: El sistema envía la confirmación de la cita mediante correo electrónico, SMS o una notificación a través de la app.
-- R5: El sistema debería enviar un recordatorio dos días antes de la cita.
-- R6: El sistema debe permitir al paciente cancelar citas y así liberar horarios de forma inmediata.
-- R7: El sistema debe permitir sacar reportes, como los siguientes: 
-    - El médico tiene mayor demanda para identificar especialidades más utilizadas
-    - Tendencia de las citas
-    - Reportes en EXCEL para hacer un análisis más detallado
-- R8: El sistema debe adoptar una agenda para llevar el control de las citas por cada médico.
-- R9: El sistema debe adoptar un tipo de calendario para registrar los días y horarios en que atienden los médicos.
-- R10: El sistema debería tomar automáticamente al registrar de la cita como cancelada luego de ser indicado por el paciente titular y notificar a otros pacientes que ese horario está disponible.
+- R1: Verificar la disponibilidad de médicos por especialidad y cupos disponibles.
+- R2: Permitir que los pacientes agenden citas por su cuenta.
+- R3: Mostrar disponibilidad en tiempo real, incluyendo citas agendadas y canceladas.
+- R4: Registrar días y horarios de atención de los médicos.
+- R5: Actualizar automáticamente la disponibilidad de médicos ante cambios o imprevistos.
+- R6: Definir la duración estándar de las citas en 20 minutos.
+- R7: Permitir que los pacientes cancelen citas y liberar los horarios de forma inmediata.
+- R8: Notificar automáticamente a otros pacientes sobre cupos disponibles tras una cancelación.
+- R9: Digitalizar las fichas de pacientes y la lista de médicos con sus especialidades.
+- R10: Enviar confirmaciones automáticas de citas por correo electrónico, SMS o notificación en aplicación móvil.
+- R11: Enviar recordatorios automáticos de citas dos días antes.
+- R12: Generar reportes sobre la demanda de médicos y especialidades más solicitadas.
+- R13: Generar reportes para analizar la tendencia de citas, patrones de cancelaciones y el porcentaje de ausentismo.
+- R14: Permitir la exportación de reportes a Excel para análisis detallados.
+- R15: Proveer una interfaz fácil de usar para pacientes y médicos para la consulta y gestión de citas.
 
 ## Clases identificadas:
 - Pacientes
 - Medicos
 - Citas
-- Agenda
 - Horarios
-- Notificaciones
 - Reportes
-- Consultorio(sistema)
+- Main (Sistema)
+- Run
