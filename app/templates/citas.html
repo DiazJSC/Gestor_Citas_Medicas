@@ -1,27 +1,162 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Gestionar Citas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Citas - CitaYA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        form h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        form label, form input, form button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        form input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        ul li a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 10px 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Gestión de Citas</h1>
-    <form method="POST">
-        <h3>Registrar Paciente</h3>
-        Nombre: <input type="text" name="nombre" required><br>
-        Identificación: <input type="text" name="identificacion" required><br>
-        Correo: <input type="email" name="correo" required><br>
-        Teléfono: <input type="text" name="telefono" required><br>
-        Fecha deseada de la Cita: <input type="date" name="fecha_nacimiento" required><br>
-        <button type="submit">Registrar</button>
-    </form>
+    <header>
+        <h1>Gestión de Citas</h1>
+    </header>
+    <main>
+        <form method="POST">
+            <h3>Registrar Paciente</h3>
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" required>
 
-    <h3>Pacientes Registrados</h3>
-    <ul>
-        {% for paciente in pacientes %}
-        <li>{{ paciente.nombre }} - <a href="{{ url_for('agendar_cita', paciente_id=loop.index0) }}">Agendar Cita</a></li>
-        {% endfor %}
-    </ul>
+            <label for="identificacion">Identificación:</label>
+            <input type="text" name="identificacion" id="identificacion" required>
 
-    <a href="/">Volver al inicio</a>
+            <label for="correo">Correo:</label>
+            <input type="email" name="correo" id="correo" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="text" name="telefono" id="telefono" required>
+
+            <label for="fecha_nacimiento">Fecha deseada de la Cita:</label>
+            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+
+            <button type="submit">Registrar</button>
+        </form>
+
+        <h3>Pacientes Registrados</h3>
+        <ul>
+            {% for paciente in pacientes %}
+            <li>{{ paciente.nombre }} - <a href="{{ url_for('agendar_cita', paciente_id=loop.index0) }}">Agendar Cita</a></li>
+            {% endfor %}
+        </ul>
+
+        <a href="/" class="back-link">Volver al inicio</a>
+    </main>
+    <footer>
+        <p>&copy; 2024 CitaYA. Todos los derechos reservados.</p>
+        <p>Creado por: Juan Sebastian Diaz - 2116642 | Maria de Mar Abadia - 2116624</p>
+    </footer>
 </body>
 </html>

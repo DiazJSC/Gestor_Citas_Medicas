@@ -26,7 +26,7 @@ El proyecto se ha realizado como entrega final de la asignatura **Programación 
 - python main.py
 
 ### Inicio página web:
-- En construcción ---> Agregar URL
+- Páginas Citas => (http://127.0.0.1:5000/)
 
 ## Autores
 - Líder proyecto: Juan Sebastian Diaz
