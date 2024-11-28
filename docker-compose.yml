@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # Servicio Flask (API)
+  api:
+    build:
+      context: .  # Usar el directorio actual como contexto
+      dockerfile: Dockerfile-flask  # Nombre correcto para el Dockerfile de Flask
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    networks:
+      - app-network  # Conexión a la misma red que el proxy y la base de datos
+    environment:
+      - FLASK_APP=app.py  # Asegúrate de que Flask pueda encontrar tu archivo app.py
+
+  # Servicio Nginx (Proxy)
+  proxy:
+    build:
+      context: .  # Usar el directorio actual como contexto
+      dockerfile: Dockerfile-nginx  # Nombre correcto para el Dockerfile de Nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - app-network  # Conexión a la misma red que Flask y la base de datos
+
+  # Servicio PostgreSQL (Base de datos)
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network  # Conexión a la misma red que Flask y Nginx
+
+# Volumen para la persistencia de la base de datos
+volumes:
+  postgres_data:
+
+# Redes personalizadas
+networks:
+  app-network:
+    driver: bridge

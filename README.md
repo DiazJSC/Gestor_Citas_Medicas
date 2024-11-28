@@ -23,11 +23,10 @@ El proyecto se ha realizado como entrega final de la asignatura **Programación 
 
 ## Uso
 ### Inicio de aplicación:
-- cd webapp
-- python main.py
+- python run.py
 
 ### Inicio página web:
-- En construcción ---> Agregar URL
+- Páginas Citas => (http://127.0.0.1:5000/)
 
 ## Autores
 - Líder proyecto: Juan Sebastian Diaz
